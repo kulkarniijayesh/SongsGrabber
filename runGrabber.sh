@@ -15,7 +15,23 @@ showPlaylists() {
 }
 
 burnSongs(){
+
 echo "Burning songs from playlist $1 to drive - " $2
+
+outFolderName=${1%.*}
+echo "Output folder will be: " $2/$outFolderName/
+
+
+mkdir $2/$outFolderName 2>/dev/null
+
+
+outFolderName=$2/$outFolderName
+
+local IFS=$'\n'
+for i in $(cat $1)
+do
+	cp $i $outFolderName	
+done
 
 echo "Your jukebox is ready!"
 
